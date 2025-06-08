@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seu Dia Especial</title>
+  <link rel="stylesheet" href="css/estilo-conteudo.css" />
+  <style>
+    /* Estilos para os novos elementos */
+    .timeline-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+      z-index: 1000;
+      transition: width 0.3s ease;
+    }
+
+    .floating-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      font-size: 20px;
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .curiosidade-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 15px;
+      margin: 15px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideIn 0.8s ease forwards;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .conquistas-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .conquista-item {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      padding: 10px;
+      border-radius: 10px;
+      border-left: 4px solid #ff6b6b;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .conquista-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .foto-hotspot {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .hotspot-dot {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6b6b;
+      border-radius: 50%;
+      border: 3px solid white;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+      }
+
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+      }
+    }
+
+    .hotspot-tooltip {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      max-width: 200px;
+      display: none;
+      z-index: 20;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .hotspot-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .audio-player {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 15px;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .play-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .reactions-section {
+      text-align: center;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      max-width: 800px;
+      /* NOVO */
+      width: 100%;
+      /* NOVO */
+    }
+
+    .reaction-btn {
+      font-size: 30px;
+      background: none;
+      border: none;
+      margin: 0 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .reaction-btn:hover {
+      transform: scale(1.3);
+    }
+
+    .reaction-count {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ff6b6b;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      min-width: 18px;
+    }
+
+    .quote-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 15px 0;
+      font-style: italic;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-box::before {
+      content: '"';
+      font-size: 60px;
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      opacity: 0.3;
+    }
+
+    .visitor-counter {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      z-index: 1000;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(180deg);
+    }
+
+    .night-mode {
+      filter: contrast(0.8) brightness(0.7) hue-rotate(180deg);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .slide-container img:hover+.photo-overlay,
+    .photo-overlay:hover {
+      opacity: 1;
+    }
+
+    .memory-quiz {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .quiz-btn {
+      background: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      margin: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .quiz-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="fireworks"></canvas>
+
+  <!-- Barra de progresso -->
+  <div class="timeline-progress" id="timelineProgress"></div>
+
+  <!-- Partículas flutuantes -->
+  <div class="floating-particles" id="particles"></div>
+
+  <!-- Botão de modo noturno -->
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+
+  <!-- Contador de visitantes -->
+  <div class="visitor-counter" id="visitorCounter">
+    👥 Visitante #<span id="visitorNumber">1</span>
+  </div>
+
+  <div class="container">
+    <h1>🎉 Linha do Tempo</h1>
+
+    <!-- Fase 1 -->
+    <section class="fase" data-fase="1">
+      <div class="fotos-slide">
+        <button class="slide-btn prev-btn">&#10094;</button>
+        <div class="slide-container">
+          <div class="foto-hotspot">
+            <img src="imagens/fase1-1.jpg" class="active" />
+            <div class="hotspot-dot" style="top: 30%; left: 40%;">
+              <div class="hotspot-tooltip">Primeira vez sorrindo para a câmera! 📸</div>
+            </div>
+          </div>
+          <img src="imagens/fase1-2.jpg" />
+          <img src="imagens/fase1-3.jpg" />
+          <img src="imagens/fase1-4.jpg" />
+          <img src="imagens/fase1-5.jpg" />
+          <img src="imagens/fase1-6.jpg" />
+          <img src="imagens/fase1-7.jpg" />
+          <img src="imagens/fase1-8.jpg" />
+          <img src="imagens/fase1-9.jpeg" />
+        </div>
+        <button class="slide-btn next-btn">&#10095;</button>
+      </div>
+
+      <div class="texto-fase">
+        <h2>👶 Começo de tudo</h2>
+
+        <div class="audio-player">
+          <button class="play-btn" onclick="playPhaseMusic(1)">▶️</button>
+          <span>🎵 Depoimento</span>
+        </div>
+
+        <div class="curiosidade-box">
+          <h4>🔍 Curiosidades desta época:</h4>
+          <p>• Sapequinha desde cedo<br>
+            • Sua primeira palavra foi "mama" aos 8 meses<br>
+            • Dormia 16 horas por dia</p>
+        </div>
+
+        <div class="quote-box">
+          "A caçula sempre é mais querida, não é mesmo?"
+        </div>
+
+        <div class="conquistas-list">
+          <div class="conquista-item">🍼 Primeira mamadeira</div>
+          <div class="conquista-item">😊 Primeiro sorriso</div>
+          <div class="conquista-item">🚼 Primeiros passos</div>
+          <div class="conquista-item">👶 Primeira palavra</div>
+        </div>
+
+        <p>"E eis que surge a próxima imperatriz dos mares da família!
+          Com o choro estridente de Luffy e o carisma dominador de Boa
+          Hancock, essa pequena pirata já comandava a casa como um verdadeiro
+          Yonkou. Seu tesouro? Toda atenção do mundo – e quem ousaria dizer não a ela?"</p>
+      </div>
+
+      <div class="reactions-section">
+        <h4>Como você se sente vendo isso?</h4>
+        <button class="reaction-btn" onclick="addReaction('❤️')">❤️<span class="reaction-count">0</span></button>
+        <button class="reaction-btn" onclick="addReaction('😊')">😊<span class="reaction-count">0</span></button>
+        <button class="reaction-btn" onclick="addReaction('🥺')">🥺<span class="reaction-count">0</span></button>
+        <button class="reaction-btn" onclick="addReaction('😍')">😍<span class="reaction-count">0</span></button>
+      </div>
+    </section>
+
+    <!-- Fase 2 -->
+    <section class="fase" data-fase="2">
+      <div class="fotos-slide">
+        <button class="slide-btn prev-btn">&#10094;</button>
+        <div class="slide-container">
+          <img src="imagens/fase2-1.jpg" class="active" />
+          <img src="imagens/fase2-2.jpg" />
+          <img src="imagens/fase2-3.jpg" />
+          <img src="imagens/fase2-4.jpg" />
+          <img src="imagens/fase2-5.jpg" />
+          <img src="imagens/fase2-6.jpg" />
+          <img src="imagens/fase2-7.jpg" />
+        </div>
+        <button class="slide-btn next-btn">&#10095;</button>
+      </div>
+
+      <div class="texto-fase">
+        <h2>🧸 Juventude</h2>
+
+        <div class="audio-player">
+          <button class="play-btn" onclick="playPhaseMusic(2)">▶️</button>
+          <span>🎵 Depoimento</span>
+        </div>
+
+        <div class="memory-quiz">
+          <h4>🧠 Quiz da Memória</h4>
+          <p>Qual ano dessas lembranças ?</p>
+          <button class="quiz-btn" onclick="checkQuiz(2, 1)">2013</button>
+          <button class="quiz-btn" onclick="checkQuiz(2, 2)">2015</button>
+          <button class="quiz-btn" onclick="checkQuiz(2, 3)">2016</button>
+        </div>
+
+        <div class="curiosidade-box">
+          <h4>📊 Estatísticas desta fase:</h4>
+          <p>• Idade: 14-15 anos<br>
+            • Estilo de musica favorita: Funk e Hip Hop <br>
+            • Religião: Evangelica</p>
+        </div>
+
+        <div class="quote-box">
+          "Meu sonho é viajar o mundo!"
+        </div>
+
+        <p>"E eis que a pequena pirata evoluiu para uma Supernova
+          rebelde! Com a teimosia do Zoro para horários de chegada e a
+          habilidade de enrolar os outros como o Nami nas negociações.
+          Seu novo tesouro? Independência (ou pelo menos era o que ela
+          gritava ao bater a porta do quarto)".</p>
+      </div>
+    </section>
+
+    <!-- Fase 3 -->
+    <section class="fase" data-fase="3">
+      <div class="fotos-slide">
+        <button class="slide-btn prev-btn">&#10094;</button>
+        <div class="slide-container">
+          <img src="imagens/fase3-1.jpg" class="active" />
+          <img src="imagens/fase3-2.jpg" />
+          <img src="imagens/fase3-3.jpg" />
+          <img src="imagens/fase3-4.jpg" />
+          <img src="imagens/fase3-5.jpg" />
+          <img src="imagens/fase3-6.jpg" />
+          <img src="imagens/fase3-7.jpg" />
+          <img src="imagens/fase3-8.jpg" />
+          <img src="imagens/fase3-9.jpg" />
+          <img src="imagens/fase3-10.jpg" />
+          <img src="imagens/fase3-11.jpg" />
+          <img src="imagens/fase3-12.jpg" />
+          <img src="imagens/fase3-13.jpg" />
+        </div>
+        <button class="slide-btn next-btn">&#10095;</button>
+      </div>
+
+      <div class="texto-fase">
+        <h2>🎓 Início de uma Linda História</h2>
+
+        <div class="audio-player">
+          <button class="play-btn" onclick="playPhaseMusic(3)">▶️</button>
+          <span>🎵 Depoimento</span>
+        </div>
+
+        <div class="curiosidade-box">
+          <h4>🏆 Curiosidades:</h4>
+          <div class="conquistas-list">
+            <div class="conquista-item">📚 Ela 15 ele 17</div>
+            <div class="conquista-item">✏️ A razão de tudo ? um copo de agua</div>
+            <div class="conquista-item">🔢 O pedido de namoro teve carta e musica no violão</div>
+            <div class="conquista-item">🎨 Nos conhecemos em Julho começamos a namorar em Dezembro de 2016</div>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          "Alô moreno ??!! - Dorme bem, sempre NIORKA - Viver Juntos Morrer Juntos
+        </div>
+
+        <p>"O amor chegou como um Buster Call no coração: inesperado, intenso e impossível de ignorar.
+          Ela, com o olhar fulminante de Robin; ele, tentando decifrar os sinais como se fossem
+          Poneglyphs. E mesmo com algumas ilhas de ciúmes e correntes de DR, no fim das contas,
+          navegaram juntos com o leme firme na cumplicidade."
+
+        </p>
+      </div>
+    </section>
+
+    <!-- Fase 4 -->
+    <section class="fase" data-fase="4">
+      <div class="fotos-slide">
+        <button class="slide-btn prev-btn">&#10094;</button>
+        <div class="slide-container">
+          <img src="imagens/fase4-1.jpg" class="active" />
+          <img src="imagens/fase4-2.jpg" />
+          <img src="imagens/fase4-3.jpg" />
+          <img src="imagens/fase4-4.jpg" />
+          <img src="imagens/fase4-5.jpg" />
+          <img src="imagens/fase4-6.jpg" />
+          <img src="imagens/fase4-7.jpg" />
+          <img src="imagens/fase4-8.jpg" />
+          <img src="imagens/fase4-9.jpg" />
+          <img src="imagens/fase4-10.jpg" />
+        </div>
+        <button class="slide-btn next-btn">&#10095;</button>
+      </div>
+
+      <div class="texto-fase">
+        <h2>🌟 A Promessa</h2>
+
+        <div class="audio-player">
+          <button class="play-btn" onclick="playPhaseMusic(4)">▶️</button>
+          <span>🎵 Depoimento</span>
+        </div>
+
+        <div class="curiosidade-box">
+          <h4>🎯 Momentos Marcantes:</h4>
+          <p>• Pedido de casamento<br>
+            • Chá de panela<br>
+            • Lua de mel</p>
+        </div>
+
+        <div class="quote-box">
+          "A vida é feita de momentos especiais" - Casando aos 22 anos
+        </div>
+
+        <p>"Depois de tantas aventuras no mar do amor, ela finalmente ancorou no Grand Line do coração: o altar!
+          O casamento foi digno de um Banquete no Sunny – com promessas mais fortes que Haki e votos
+          tão leais quanto o Zoro ao Luffy. Agora, formavam um bando oficial, com alianças no dedo e
+          planos tão grandiosos quanto encontrar o One Piece.
+          Só não se engane: mesmo casada, ela continua sendo a Capitã. Ele? O imediato apaixonado,
+          pronto pra navegar até o fim do mundo... ou pelo menos até a próxima DR com final feliz!"</p>
+      </div>
+    </section>
+
+    <!-- Fase 5 -->
+    <section class="fase" data-fase="5">
+      <div class="fotos-slide">
+        <button class="slide-btn prev-btn">&#10094;</button>
+        <div class="slide-container">
+          <img src="imagens/fase5-1.jpg" class="active" />
+          <img src="imagens/fase5-2.jpg" />
+          <img src="imagens/fase5-3.jpg" />
+          <img src="imagens/fase5-4.jpg" />
+          <img src="imagens/fase5-5.jpg" />
+          <img src="imagens/fase5-6.jpg" />
+          <img src="imagens/fase5-7.jpg" />
+        </div>
+        <button class="slide-btn next-btn">&#10095;</button>
+      </div>
+
+      <div class="texto-fase">
+        <h2>💖 Presente e Futuro</h2>
+
+        <div class="audio-player">
+          <button class="play-btn" onclick="playPhaseMusic(5)">▶️</button>
+          <span>🎵 Depoimento</span>
+        </div>
+
+        <div class="curiosidade-box">
+          <h4>🚀 Planos para o Futuro:</h4>
+          <div class="conquistas-list">
+            <div class="conquista-item">🎓 Formar na faculdade</div>
+            <div class="conquista-item">💼 Carreira dos sonhos</div>
+            <div class="conquista-item">🌍 Viajar pelo mundo</div>
+            <div class="conquista-item">❤️ Construir uma família</div>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          "O melhor ainda está por vir!" - Olhando para o futuro
+        </div>
+
+        <p>"Agora navegando pelos mares da faculdade, ela trocou as espadas por livros e
+          embarcou rumo à Grand Line da saúde!
+          estágios, provas e café no modo 'Haki do Armamento', ela vai se tornando uma
+          verdadeira terapeuta ocupacional — com a empatia da Robin, a dedicação do Chopper e a
+          teimosia do Luffy nas semanas de entrega de trabalho.
+          E mesmo cansada, segue firme no leme – porque essa jornada é só o início do arco mais
+          grandioso da sua história"</p>
+      </div>
+    </section>
+
+    <a href="index.html" class="voltar">Voltar</a>
+  </div>
+
+  <script src="js/musica.js"></script>
+  <script src="js/fogos.js"></script>
+
+  <script>
+    // Inicialização
+    let reactionCounts = {
+      '❤️': 0, '😊': 0, '🥺': 0, '😍': 0
+    };
+    let visitorCount = Math.floor(Math.random() * 500) + 100;
+    document.getElementById('visitorNumber').textContent = visitorCount;
+
+
+
+    // Controle de slides
+    document.querySelectorAll('.fotos-slide').forEach(slideSection => {
+      const images = slideSection.querySelectorAll('.slide-container img');
+      const prevBtn = slideSection.querySelector('.prev-btn');
+      const nextBtn = slideSection.querySelector('.next-btn');
+      let currentIndex = 0;
+      let slideInterval = null;
+      let isVisible = false;
+
+      function showImage(index) {
+        images.forEach((img, i) => {
+          img.classList.toggle('active', i === index);
+        });
+        currentIndex = index;
+      }
+
+      function startAutoSlide() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+          if (isVisible) {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+          }
+        }, 4000);
+      }
+
+      function stopAutoSlide() {
+        if (slideInterval) {
+          clearInterval(slideInterval);
+          slideInterval = null;
+        }
+      }
+
+      // Event listeners para os botões
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+        startAutoSlide(); // Reinicia o timer
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+        startAutoSlide(); // Reinicia o timer
+      });
+
+      // Intersection Observer para esta seção específica
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            isVisible = true;
+            startAutoSlide();
+            console.log('Slide iniciado');
+          } else {
+            isVisible = false;
+            stopAutoSlide();
+            console.log('Slide pausado');
+          }
+        });
+      }, {
+        threshold: 0.5 // 50% da seção deve estar visível
+      });
+
+      observer.observe(slideSection);
+    });
+
+    // Barra de progresso
+    function updateProgress() {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('timelineProgress').style.width = scrollPercent + '%';
+    }
+    window.addEventListener('scroll', updateProgress);
+
+    // Partículas flutuantes
+    function createParticle() {
+      const particles = ['💖', '🌟', '✨', '🎈', '🎉', '💫', '🌸', '🦋'];
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 2 + 's';
+      document.getElementById('particles').appendChild(particle);
+
+      setTimeout(() => particle.remove(), 6000);
+    }
+    setInterval(createParticle, 1000);
+
+    // Hotspots nas fotos
+    document.querySelectorAll('.hotspot-dot').forEach(dot => {
+      const tooltip = dot.querySelector('.hotspot-tooltip');
+      dot.addEventListener('mouseenter', () => {
+        tooltip.style.display = 'block';
+      });
+      dot.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+      });
+    });
+
+    // Sistema de reações
+    function addReaction(emoji) {
+      reactionCounts[emoji]++;
+      const btn = event.target.closest('.reaction-btn');
+      const counter = btn.querySelector('.reaction-count');
+      counter.textContent = reactionCounts[emoji];
+
+      // Animação
+      btn.style.transform = 'scale(1.5)';
+      setTimeout(() => {
+        btn.style.transform = 'scale(1)';
+      }, 200);
+    }
+
+    // Player de música (simulado)
+    function playPhaseMusic(phase) {
+      const btn = event.target;
+      if (btn.textContent === '▶️') {
+        btn.textContent = '⏸️';
+        console.log(`Tocando música da fase ${phase}`);
+      } else {
+        btn.textContent = '▶️';
+        console.log('Música pausada');
+      }
+    }
+
+    // Quiz das memórias
+    function checkQuiz(phase, answer) {
+      const correctAnswers = { 2: 2, 3: 1, 4: 3 };
+      const btn = event.target;
+
+      if (answer === correctAnswers[phase]) {
+        btn.style.background = '#4CAF50';
+        btn.textContent = '✅ Correto!';
+      } else {
+        btn.style.background = '#f44336';
+        btn.textContent = '❌ Tente novamente';
+      }
+
+      setTimeout(() => {
+        btn.style.background = 'white';
+        btn.textContent = btn.textContent.replace('✅ ', '').replace('❌ ', '');
+      }, 2000);
+    }
+
+
+    // Animações de entrada
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = '0.3s';
+          entry.target.classList.add('fadeInUp');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fase').forEach(fase => {
+      observer.observe(fase);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Aniversário!</title>
+  <link rel="stylesheet" href="css/estilo_index.css" />
+  <style>
+    /* Importar fontes modernas */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+    /* Reset e configurações base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 20%, #f093fb 40%, #f5576c 60%, #4facfe 80%, #00f2fe 100%);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      min-height: 100vh;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Animações de entrada melhoradas */
+    .fade-in {
+      animation: fadeInAdvanced 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .slide-up {
+      animation: slideUpAdvanced 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @keyframes fadeInAdvanced {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideUpAdvanced {
+      from {
+        opacity: 0;
+        transform: translateY(60px) rotateX(15deg);
+        filter: blur(3px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+        filter: blur(0);
+      }
+    }
+
+    /* Partículas de fundo melhoradas */
+    .background-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .heart-particle {
+      position: absolute;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      animation: floatHeartAdvanced 12s infinite ease-in-out;
+      pointer-events: none;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+
+    @keyframes floatHeartAdvanced {
+      0% {
+        transform: translateY(100vh) rotate(0deg) scale(0);
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+        transform: translateY(95vh) rotate(45deg) scale(1);
+      }
+
+      50% {
+        transform: translateY(50vh) rotate(180deg) scale(1.2);
+      }
+
+      95% {
+        opacity: 1;
+        transform: translateY(-5vh) rotate(360deg) scale(1);
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(405deg) scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Título com efeitos 3D */
+    .main-title {
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8, #ffb3b3, #ffffff);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShiftAdvanced 4s ease-in-out infinite;
+      font-size: 4.5em;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      filter: drop-shadow(0 5px 15px rgba(255, 107, 107, 0.4));
+      text-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+      transform-style: preserve-3d;
+    }
+
+    .main-title::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: rgba(255, 107, 107, 0.3);
+      z-index: -1;
+      transform: translateZ(-20px) translateX(3px) translateY(3px);
+      filter: blur(2px);
+    }
+
+    @keyframes gradientShiftAdvanced {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      25% {
+        background-position: 100% 0%;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      75% {
+        background-position: 0% 100%;
+      }
+    }
+
+    /* Carta de amor com glassmorphism avançado */
+    .love-letter {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 25px;
+      padding: 40px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 25px 45px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .love-letter::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmerAdvanced 6s linear infinite;
+    }
+
+    @keyframes shimmerAdvanced {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    .love-letter:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow:
+        0 35px 60px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 0 30px rgba(255, 107, 107, 0.2);
+    }
+
+    .love-letter p {
+      position: relative;
+      z-index: 2;
+      line-height: 1.9;
+      font-size: 1.15em;
+      text-align: justify;
+      color: #333;
+      font-weight: 400;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+    }
+
+    .love-letter p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Seção musical com efeitos 3D */
+    .music-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      border-radius: 30px;
+      padding: 40px;
+      margin: 40px 0;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transform-style: preserve-3d;
+    }
+
+    .music-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: rotateGlow 10s linear infinite;
+    }
+
+    .music-section::after {
+      content: '🎵';
+      position: absolute;
+      font-size: 120px;
+      opacity: 0.08;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      animation: floatSymbol 4s ease-in-out infinite;
+    }
+
+    @keyframes rotateGlow {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes floatSymbol {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) rotate(-10deg) scale(1.1);
+      }
+    }
+
+    .music-section h3 {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 30px;
+      font-size: 2em;
+      font-weight: 600;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    }
+
+    .botoes-musica {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .music-btn {
+      background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffa8a8);
+      border: none;
+      color: white;
+      padding: 18px 35px;
+      border-radius: 60px;
+      font-size: 1.3em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow:
+        0 8px 25px rgba(255, 107, 107, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+      min-width: 180px;
+      transform-style: preserve-3d;
+    }
+
+    .music-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translate(-50%, -50%);
+    }
+
+    .music-btn:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .music-btn:hover {
+      transform: translateY(-5px) scale(1.08) rotateX(5deg);
+      box-shadow:
+        0 15px 35px rgba(255, 107, 107, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .music-btn:active {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .music-btn span {
+      position: relative;
+      z-index: 2;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+
+    /* Spinner com efeitos holográficos */
+    .spinner-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(25px) saturate(200%);
+      border-radius: 25px;
+      padding: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow:
+        0 25px 45px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    .spinner {
+      border: 8px solid rgba(255, 255, 255, 0.2);
+      border-top: 8px solid #ff69b4;
+      border-right: 8px solid #ff8e8e;
+      border-bottom: 8px solid #ffa8a8;
+      border-left: 8px solid #ffb3b3;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      animation: spinAdvanced 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+      position: relative;
+      filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.5));
+    }
+
+    .spinner::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 25px;
+      height: 25px;
+      background: radial-gradient(circle, #ff6b6b, #ff8e8e, #ffa8a8);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseAdvanced 1.5s ease-in-out infinite;
+      box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+    }
+
+    @keyframes spinAdvanced {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulseAdvanced {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.7;
+      }
+    }
+
+    .frase {
+      margin-top: 30px;
+      font-size: 1.4em;
+      color: #333;
+      text-align: center;
+      animation: fadeTextAdvanced 1s ease-in-out;
+      font-weight: 500;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    @keyframes fadeTextAdvanced {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Contadores com efeitos holográficos */
+    .special-moments {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .moment-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    .moment-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: cardShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes cardShimmer {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    .moment-card:hover {
+      transform: translateY(-8px) scale(1.05) rotateX(5deg);
+      box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.15),
+        0 0 25px rgba(255, 107, 107, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .moment-number {
+      font-size: 3em;
+      font-weight: 700;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 2px 4px rgba(255, 107, 107, 0.3));
+    }
+
+    .moment-label {
+      font-size: 1em;
+      opacity: 0.9;
+      margin-top: 8px;
+      color: #333;
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Efeito de digitação melhorado */
+    .typing-effect {
+      overflow: hidden;
+      border-right: 4px solid #ff6b6b;
+      white-space: nowrap;
+      margin: 0 auto;
+      animation: typingAdvanced 5s steps(50, end), blinkCaretAdvanced 1s step-end infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+    }
+
+    @keyframes typingAdvanced {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blinkCaretAdvanced {
+
+      from,
+      to {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: #ff6b6b;
+      }
+    }
+
+    /* Botão surpresa com efeitos 3D */
+    .surprise-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffa8a8);
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow:
+        0 8px 25px rgba(255, 107, 107, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 1000;
+      animation: bounceAdvanced 3s infinite;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes bounceAdvanced {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      10% {
+        transform: translateY(-8px) scale(1.05);
+      }
+
+      30% {
+        transform: translateY(-4px) scale(1.02);
+      }
+
+      40% {
+        transform: translateY(-15px) scale(1.1);
+      }
+
+      60% {
+        transform: translateY(-8px) scale(1.05);
+      }
+    }
+
+    .surprise-btn:hover {
+      transform: scale(1.15) rotateY(15deg);
+      box-shadow:
+        0 15px 35px rgba(255, 107, 107, 0.5),
+        0 0 25px rgba(255, 255, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    /* Citação de amor melhorada */
+    .love-quote {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.4em;
+      font-weight: 500;
+      color: #333;
+      margin: 40px 0;
+      padding: 30px;
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .love-quote::before,
+    .love-quote::after {
+      font-size: 4em;
+      position: absolute;
+      opacity: 0.2;
+      color: #ff6b6b;
+      filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.3));
+    }
+
+    .love-quote::before {
+      content: '❝';
+      top: -15px;
+      left: 15px;
+    }
+
+    .love-quote::after {
+      content: '❞';
+      bottom: -25px;
+      right: 15px;
+    }
+
+    /* Responsividade aprimorada */
+    @media (max-width: 768px) {
+      .main-title {
+        font-size: 3em;
+      }
+
+      .botoes-musica {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .music-btn {
+        width: 90%;
+        max-width: 320px;
+      }
+
+      .special-moments {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .love-letter {
+        padding: 25px;
+        margin: 25px 0;
+      }
+
+      .music-section {
+        padding: 30px 20px;
+      }
+
+      .surprise-btn {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-title {
+        font-size: 2.2em;
+      }
+
+      .special-moments {
+        grid-template-columns: 1fr;
+      }
+
+      .love-quote {
+        font-size: 1.2em;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Música de fundo -->
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="musicas/background.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Botão para controlar música -->
+  <button onclick="toggleMusic()"
+    style="position: fixed; top: 20px; right: 20px; padding: 10px; border: none; border-radius: 50%; background: #ff6b6b; color: white; font-size: 20px; cursor: pointer; z-index: 1000;">🎵</button>
+
+  <!-- Partículas de fundo -->
+  <div class="background-particles" id="backgroundParticles"></div>
+
+  <!-- Botão surpresa -->
+  <button class="surprise-btn" onclick="showSurprise()" title="Clique para uma surpresa! 💖">
+    💝
+  </button>
+
+  <div class="container">
+    <h1 class="main-title fade-in" data-text="🎉 Parabéns, Meu Amor!">🎉 Parabéns, Meu Amor!</h1>
+
+    <!-- Contadores especiais -->
+    <div class="special-moments slide-up">
+      <div class="moment-card">
+        <div class="moment-number" id="daysTogether">0</div>
+        <div class="moment-label">Dias juntos</div>
+      </div>
+      <div class="moment-card">
+        <div class="moment-number" id="smilesCaused">∞</div>
+        <div class="moment-label">Sorrisos causados</div>
+      </div>
+      <div class="moment-card">
+        <div class="moment-number" id="loveLevel">100%</div>
+        <div class="moment-label">Nível de amor</div>
+      </div>
+      <div class="moment-card">
+        <div class="moment-number" id="memoriesCreated">1000+</div>
+        <div class="moment-label">Memórias criadas</div>
+      </div>
+    </div>
+
+    <!-- Citação de amor -->
+    <div class="love-quote fade-in">
+      Que a vida lhe ofereça muitas razões para sorrir e que cada momento seja vivido com muita intensidade. Feliz
+      aniversário! ❤️
+    </div>
+
+    <!-- Carta de Parabens -->
+    <div class="love-letter slide-up">
+      <p>Hoje é um dia muito especial. Não estamos comemorando apenas os seus 24 anos de vida, mas tudo o
+        que essa idade representa a sua força, sua garra, sua beleza por dentro e por fora, e o quanto você
+        já conquistou até aqui. Parabéns por ser essa mulher incrível, forte, determinada e carinhosa
+        (mesmo que às vezes com um jeitinho um pouco bruto haha). Que a vida continue te presenteando
+        com saúde, amor, sucesso e paz. Você merece o melhor de tudo, sempre.</p>
+
+      <p>Quero que saiba o quanto me orgulho de você. Cada conquista sua, por menor que pareça, me enche o
+        coração de alegria. Ver você batalhando pelos seus sonhos, enfrentando os desafios da faculdade, mesmo
+        quando tudo parece difícil, beirando a loucura, sim, eu entendo toda essa pressão que você está
+        sentindo e ainda assim encontrar coragem para seguir em frente, é algo lindo de se ver. E quando
+        posso te ajudar em algo, por menor que seja, sinto como se estivesse vencendo junto com você. A sua
+        luta é também a minha, e cada passo que você dá é mais um motivo para eu me sentir feliz e realizado
+        ao seu lado.</p>
+
+      <p>Sou grato por tudo que temos construído juntos pela sua confiança em mim, pela sua fé, pelo carinho
+        e pelo apoio que me dão forças nos dias bons e, principalmente, nos difíceis. Você não imagina o quanto
+        isso me fortalece. Obrigado por permitir que eu caminhe ao seu lado e por me deixar ser parte da sua
+        história. Que venham muitos outros aniversários, muitos sonhos realizados e muitas alegrias e que eu
+        esteja sempre aqui, celebrando cada um deles com você.</p>
+
+      <p>Por último, mas não menos importante, parabéns pela conclusão do seu primeiro período na faculdade!
+        Pelas boas notas, pelas experiências vividas até aqui, e também pelas notas ruins porque elas fazem
+        parte do caminho e servem pra gente aprender, evoluir e voltar ainda mais forte. Estou muito orgulhoso
+        de você, da sua força de vontade e da forma como encara cada desafio. Tenho certeza de que, com essa
+        dedicação, você vai se tornar uma profissional incrível aquelas que realmente fazem a diferença por
+        onde passam.</p>
+
+      <p><strong>Feliz aniversário, minha esposa, minha melhor amiga. 💖</strong></p>
+    </div>
+
+    <!-- Seção musical -->
+    <div class="music-section slide-up">
+      <h3 class="typing-effect">🎵 Escolha a trilha sonora para sua biografia!</h3>
+      <div class="botoes-musica" id="botoesMusica">
+        <button class="music-btn" onclick="escolherMusica('beto')">
+          <span>🎵 Escolha do Beto</span>
+        </button>
+        <button class="music-btn" onclick="escolherMusica('classicas')">
+          <span>🎶 Hits Imortais</span>
+        </button>
+        <button class="music-btn" onclick="escolherMusica('vibe')">
+          <span>🎧 Vibe TikTok</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Spinner melhorado -->
+    <div class="spinner-container" id="spinnerContainer">
+      <div class="spinner"></div>
+      <p class="frase" id="fraseTransicao">Preparando algo especial...</p>
+    </div>
+  </div>
+
+  <script>
+    // Frases românticas para o loading
+    const frases = [
+      '💖 Ótima escolha, meu amor!',
+      '🌟 Preparando cada detalhe com carinho...',
+      '✨ Criando momentos mágicos para você...',
+      '🎉 Quase lá... só mais um pouquinho!',
+      '💕 Você sabe o quanto eu te amo, né?',
+      '🎈 Surpresas especiais chegando...',
+      '🚀 Pronta para relembrar sua história?'
+    ];
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function () {
+      createHeartParticles();
+      animateCounters();
+      addTypingEffect();
+    });
+
+    // Criar partículas de coração
+    function createHeartParticles() {
+      const particles = document.getElementById('backgroundParticles');
+      const heartEmojis = ['💖', '💕', '💗', '💝', '💘', '🌸', '✨', '🦋'];
+
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+        particles.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 12000);
+      }, 600);
+    }
+
+    // Animar contadores
+    function animateCounters() {
+      // Simular dias juntos (exemplo: 2 anos = ~730 dias)
+      const daysElement = document.getElementById('daysTogether');
+      let days = 0;
+      const targetDays = 3102; // Ajuste conforme necessário
+
+      const dayInterval = setInterval(() => {
+        days += 13;
+        daysElement.textContent = days;
+        if (days >= targetDays) {
+          daysElement.textContent = targetDays;
+          clearInterval(dayInterval);
+        }
+      }, 50);
+    }
+
+    // Efeito de digitação
+    function addTypingEffect() {
+      const typingElements = document.querySelectorAll('.typing-effect');
+      typingElements.forEach(element => {
+        const text = element.textContent;
+        element.textContent = '';
+        element.style.width = '0';
+
+        setTimeout(() => {
+          element.style.width = '100%';
+          let i = 0;
+          const typeInterval = setInterval(() => {
+            element.textContent += text.charAt(i);
+            i++;
+            if (i >= text.length) {
+              clearInterval(typeInterval);
+              setTimeout(() => {
+                element.style.borderRight = 'none';
+              }, 1000);
+            }
+          }, 100);
+        }, 1000);
+      });
+    }
+
+   function escolherMusica(categoria) {
+  const listas = {
+    'beto': ['beto1.mp3', 'beto2.mp3', 'beto3.mp3', 'beto4.mp3', 'beto5.mp3', 'beto6.mp3', 'beto7.mp3', 'beto8.mp3', 'beto9.mp3'],
+    'classicas': ['classica1.mp3', 'classica2.mp3', 'classica3.mp3', 'classica4.mp3', 'classica5.mp3', 'classica6.mp3', 'classica7.mp3', 'classica8.mp3', 'classica9.mp3', 'classica10.mp3', 'classica11.mp3', 'classica12.mp3', 'classica13.mp3', 'classica14.mp3'],
+    'vibe': ['vibe1.mp3', 'vibe2.mp3', 'vibe3.mp3', 'vibe4.mp3', 'vibe5.mp3', 'vibe6.mp3', 'vibe7.mp3', 'vibe8.mp3']
+  };
+
+  const musicas = listas[categoria];
+
+  // Salva categoria, playlist completa e índice inicial
+  localStorage.setItem('musicaCategoria', categoria);
+  localStorage.setItem('playlist', JSON.stringify(musicas));
+  localStorage.setItem('musicaIndex', '0');
+
+  // Animação de esconder botões
+  const botoesDiv = document.getElementById('botoesMusica');
+  botoesDiv.style.transform = 'translateY(-20px)';
+  botoesDiv.style.opacity = '0';
+
+  setTimeout(() => {
+    botoesDiv.style.display = 'none';
+  }, 300);
+
+  // Mostrar spinner
+  const spinnerContainer = document.getElementById('spinnerContainer');
+  const fraseEl = document.getElementById('fraseTransicao');
+
+  setTimeout(() => {
+    spinnerContainer.style.display = 'flex';
+    spinnerContainer.style.opacity = '0';
+    spinnerContainer.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+      spinnerContainer.style.opacity = '1';
+      spinnerContainer.style.transform = 'translateY(0)';
+      spinnerContainer.style.transition = 'all 0.5s ease';
+    }, 100);
+  }, 400);
+
+  // Rotacionar frases
+  let i = 0;
+  const intervalo = setInterval(() => {
+    fraseEl.style.opacity = '0';
+
+    setTimeout(() => {
+      fraseEl.textContent = frases[i];
+      fraseEl.style.opacity = '1';
+      i++;
+
+      if (i === frases.length) {
+        clearInterval(intervalo);
+      }
+    }, 200);
+  }, 2500);
+
+  // Redirecionar para conteúdo após mostrar frases
+  setTimeout(() => {
+    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.opacity = '0';
+
+    setTimeout(() => {
+      window.location.href = 'conteudo.html';
+    }, 500);
+  }, frases.length * 2500 + 1500);
+}
+
+
+
+    // Função surpresa
+    function showSurprise() {
+      const surprises = [
+        'Te amo mais que chocolate! 🍫💖',
+        'Você é minha pessoa favorita no universo! 🌟',
+        'Cada dia com você é uma aventura! 🎢💕',
+        'Você faz meu coração acelerar! 💓🏃‍♀️',
+        'Obrigado por existir na minha vida! 🙏❤️'
+      ];
+
+      const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+
+      // Criar elemento de surpresa
+      const surpriseDiv = document.createElement('div');
+      surpriseDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        color: white;
+        padding: 25px 35px;
+        border-radius: 20px;
+        font-size: 1.3em;
+        font-weight: 500;
+        text-align: center;
+        z-index: 10000;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.3);
+        animation: surprisePopup 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      `;
+
+      surpriseDiv.innerHTML = randomSurprise;
+      document.body.appendChild(surpriseDiv);
+
+      // Remover após 3 segundos
+      setTimeout(() => {
+        surpriseDiv.style.animation = 'surprisePopup 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse';
+        setTimeout(() => {
+          document.body.removeChild(surpriseDiv);
+        }, 600);
+      }, 3000);
+    }
+
+    // Adicionar CSS da animação de surpresa
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes surprisePopup {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.5) rotateY(-180deg);
+          filter: blur(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+          filter: blur(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    function toggleMusic() {
+      const music = document.getElementById('backgroundMusic');
+      const btn = event.target;
+
+      if (music.paused) {
+        music.play();
+        btn.textContent = '🎵';
+      } else {
+        music.pause();
+        btn.textContent = '🔇';
+      }
+    }
+
+    // Configurar volume
+    document.getElementById('backgroundMusic').volume = 0.3;
+  </script>
+</body>
+
+</html>

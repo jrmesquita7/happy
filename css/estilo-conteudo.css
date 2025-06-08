@@ -1,0 +1,149 @@
+/* Seu CSS original + ajustes para slide */
+
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to bottom, #fff0f5, #e0ffff);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  color: #cc3399;
+  text-shadow: 1px 1px 2px #999;
+}
+
+.fase {
+  display: flex;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.fase:nth-child(odd) {
+  background-color: #fff8f0;
+  flex-direction: row;
+}
+
+.fase:nth-child(even) {
+  background-color: #f0f8ff;
+  flex-direction: row-reverse;
+}
+
+/* --- Ajustes fotos-slide para slider com fade --- */
+.fotos-slide {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.slide-container {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 6px dashed #ffa07a;
+  border-radius: 20px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.slide-container img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide-btn {
+  background-color: rgba(255, 160, 122, 0.7);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 10px;
+  border-radius: 10px;
+  user-select: none;
+  transition: background-color 0.3s;
+  z-index: 10;
+  height: 50px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-btn:hover {
+  background-color: #ff7f50;
+}
+
+.prev-btn {
+  margin-right: 10px;
+}
+
+.next-btn {
+  margin-left: 10px;
+}
+
+/* Texto */
+.texto-fase {
+  flex: 1;
+  min-width: 250px;
+  text-align: justify;
+}
+
+.texto-fase h2 {
+  color: #ff1493;
+  font-size: 1.6em;
+  margin-bottom: 10px;
+}
+
+.texto-fase p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
+}
+
+.voltar {
+  display: block;
+  text-align: center;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  background: #ff69b4;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  width: fit-content;
+}
