@@ -10,24 +10,34 @@ document.addEventListener('DOMContentLoaded', () => {
   let musicaIndex = parseInt(localStorage.getItem('musicaIndex') || '0');
 
   // Função para tocar música da playlist
-  function tocarMusica(index) {
-    if (!playlist || index >= playlist.length) return;
+  // SUBSTITUIR a função tocarMusica() por esta versão corrigida:
 
-    backgroundAudio = new Audio(`musicas/${playlist[index]}`);
+function tocarMusica(index) {
+  if (!playlist || index >= playlist.length) return;
+
+  backgroundAudio = new Audio(`musicas/${playlist[index]}`);
+  
+  // ALTERAÇÃO PRINCIPAL: Verificar se há depoimento tocando antes de definir o volume
+  if (currentTestimony && !currentTestimony.paused) {
+    // Se há depoimento tocando, usar volume reduzido
+    backgroundAudio.volume = defaultVolume * 0.1;
+  } else {
+    // Se não há depoimento, usar volume normal
     backgroundAudio.volume = defaultVolume;
-
-    backgroundAudio.play().then(() => {
-      isMusicPlaying = true;
-    }).catch((error) => {
-      console.warn('Autoplay bloqueado:', error);
-    });
-
-    backgroundAudio.onended = () => {
-      musicaIndex++;
-      localStorage.setItem('musicaIndex', musicaIndex.toString());
-      tocarMusica(musicaIndex);
-    };
   }
+
+  backgroundAudio.play().then(() => {
+    isMusicPlaying = true;
+  }).catch((error) => {
+    console.warn('Autoplay bloqueado:', error);
+  });
+
+  backgroundAudio.onended = () => {
+    musicaIndex++;
+    localStorage.setItem('musicaIndex', musicaIndex.toString());
+    tocarMusica(musicaIndex);
+  };
+}
 
   if (playlist && playlist.length > 0) {
     tocarMusica(musicaIndex);

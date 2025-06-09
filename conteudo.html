@@ -315,6 +315,237 @@
     .quiz-btn:hover {
       transform: scale(1.05);
     }
+
+    .encerramento-section {
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.encerramento-btn-container {
+  margin: 30px 0;
+}
+
+.btn-encerramento {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-encerramento:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.btn-encerramento::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-encerramento:hover::before {
+  left: 100%;
+}
+
+/* Modal de Créditos */
+.creditos-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+.creditos-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 5% auto;
+  padding: 0;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
+}
+
+.creditos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.creditos-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.creditos-body {
+  padding: 20px 30px 30px;
+  color: white;
+}
+
+.credito-secao {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.credito-secao h3 {
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.dedicatoria {
+  text-align: center;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.participantes {
+  display: grid;
+  gap: 12px;
+}
+
+.participante {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.participante:hover {
+  transform: translateX(5px);
+}
+
+.participante .emoji {
+  font-size: 24px;
+  width: 40px;
+  text-align: center;
+}
+
+.participante .nome {
+  font-weight: bold;
+  flex: 1;
+}
+
+.participante .papel {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
+
+.proposito {
+  text-align: center;
+  line-height: 1.6;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.credito-secao.final {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.agradecimento p {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.agradecimento .data {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .creditos-content {
+    width: 95%;
+    margin: 10% auto;
+    max-height: 85vh;
+  }
+  
+  .creditos-header,
+  .creditos-body {
+    padding: 20px;
+  }
+  
+  .participante {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .btn-encerramento {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
+}
   </style>
 </head>
 
@@ -357,6 +588,7 @@
           <img src="imagens/fase1-7.jpg" />
           <img src="imagens/fase1-8.jpg" />
           <img src="imagens/fase1-9.jpeg" />
+          <img src="imagens/fase1-10.jpg" />
         </div>
         <button class="slide-btn next-btn">&#10095;</button>
       </div>
@@ -601,6 +833,138 @@
       </div>
     </section>
 
+    <section class="encerramento-section" id="encerramento">
+  <div class="encerramento-btn-container">
+    <button class="btn-encerramento" onclick="mostrarCreditos()">
+      🎬 Encerramento
+    </button>
+  </div>
+
+  <!-- Modal de Créditos -->
+  <div class="creditos-modal" id="creditosModal">
+    <div class="creditos-content">
+      <div class="creditos-header">
+        <h2>🎭 Créditos</h2>
+        <button class="close-btn" onclick="fecharCreditos()">×</button>
+      </div>
+      
+      <div class="creditos-body">
+        <div class="credito-secao">
+          <h3>💝 Dedicado à</h3>
+          <p class="dedicatoria">Karine Feitosa Ferreira Mesquita - Por todos os momentos especiais e pela jornada incrível que você construiu</p>
+        </div>
+
+        <div class="credito-secao">
+          <h3>👥 Participaram desta História</h3>
+          <div class="participantes">
+            <div class="participante">
+              <span class="emoji">💑</span>
+              <span class="nome">Cleobeto Junior</span>
+              <span class="papel">Marido</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👩‍💼</span>
+              <span class="nome">Cristiane Lopes</span>
+              <span class="papel">Prima do marido</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👦</span>
+              <span class="nome">Cristiano</span>
+              <span class="papel">Filho da amiga</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👩‍⚕️</span>
+              <span class="nome">Daniele</span>
+              <span class="papel">Tia</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👨‍🎓</span>
+              <span class="nome">Eduardo</span>
+              <span class="papel">Amigo</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">🎮</span>
+              <span class="nome">Guilherme</span>
+              <span class="papel">Amigo</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">🎯</span>
+              <span class="nome">Joaquim</span>
+              <span class="papel">Amigo</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👩‍🎨</span>
+              <span class="nome">Kalline dos Santos</span>
+              <span class="papel">Irmã</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">🌸</span>
+              <span class="nome">Laiane</span>
+              <span class="papel">Prima</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👨‍🔧</span>
+              <span class="nome">Lorivaldo</span>
+              <span class="papel">Pai</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👩‍❤️‍👨</span>
+              <span class="nome">Luzinalva Santos</span>
+              <span class="papel">Mãe</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👩‍🎤</span>
+              <span class="nome">Madalena</span>
+              <span class="papel">Sogra</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👭</span>
+              <span class="nome">Mariana</span>
+              <span class="papel">Amiga</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">🎸</span>
+              <span class="nome">Rafael</span>
+              <span class="papel">Cunhado</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">🌟</span>
+              <span class="nome">Tia Deia</span>
+              <span class="papel">Tia especial</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">👯‍♀️</span>
+              <span class="nome">Vanessa</span>
+              <span class="papel">Amiga</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">🚀</span>
+              <span class="nome">Wallace Wilian</span>
+              <span class="papel">Cunhado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="credito-secao">
+          <h3>🌟 Por que foi criado</h3>
+          <p class="proposito">
+            Esta linha do tempo foi criada com muito carinho para celebrar momentos únicos, 
+            preservar memórias preciosas e mostrar o quanto cada fase da vida é especial. 
+            Que esta jornada continue cheia de amor, conquistas e sonhos realizados!
+          </p>
+        </div>
+
+        <div class="credito-secao final">
+          <div class="agradecimento">
+            <p>✨ Obrigado por fazer parte desta história ✨</p>
+            <p class="data">Criado entre o dia 01/06 ao 14/06 com 💖</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <a href="index.html" class="voltar">Voltar</a>
   </div>
 
@@ -774,6 +1138,57 @@
     document.querySelectorAll('.fase').forEach(fase => {
       observer.observe(fase);
     });
+
+    function mostrarCreditos() {
+  document.getElementById('creditosModal').style.display = 'block';
+  document.body.style.overflow = 'hidden'; // Impede scroll do fundo
+  
+  // Adiciona partículas especiais para os créditos
+  criarParticulas();
+}
+
+function fecharCreditos() {
+  document.getElementById('creditosModal').style.display = 'none';
+  document.body.style.overflow = 'auto'; // Restaura scroll
+}
+
+function criarParticulas() {
+  const modal = document.getElementById('creditosModal');
+  const particulas = ['🌟', '✨', '💫', '🎉', '🎊', '💖'];
+  
+  for(let i = 0; i < 20; i++) {
+    setTimeout(() => {
+      const particula = document.createElement('div');
+      particula.style.position = 'fixed';
+      particula.style.left = Math.random() * 100 + '%';
+      particula.style.top = Math.random() * 100 + '%';
+      particula.style.fontSize = '20px';
+      particula.style.pointerEvents = 'none';
+      particula.style.zIndex = '2001';
+      particula.textContent = particulas[Math.floor(Math.random() * particulas.length)];
+      particula.style.animation = 'float 3s ease-out forwards';
+      
+      modal.appendChild(particula);
+      
+      setTimeout(() => particula.remove(), 3000);
+    }, i * 100);
+  }
+}
+
+// Fechar modal clicando fora dele
+window.onclick = function(event) {
+  const modal = document.getElementById('creditosModal');
+  if (event.target === modal) {
+    fecharCreditos();
+  }
+}
+
+// Fechar modal com ESC
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    fecharCreditos();
+  }
+});
   </script>
 </body>
 
