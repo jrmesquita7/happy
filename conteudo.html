@@ -466,19 +466,26 @@
 
 .participante .emoji {
   font-size: 24px;
-  width: 40px;
+  width: 50px;
+  min-width: 50px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .participante .nome {
   font-weight: bold;
   flex: 1;
+  min-width: 0; /* Permite que o texto seja truncado se necessário */
 }
 
 .participante .papel {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
   font-style: italic;
+  text-align: right;
+  min-width: 100px;
 }
 
 .proposito {
@@ -603,9 +610,9 @@
 
         <div class="curiosidade-box">
           <h4>🔍 Curiosidades desta época:</h4>
-          <p>• Sapequinha desde cedo<br>
-            • Sua primeira palavra foi "mama" aos 8 meses<br>
-            • Dormia 16 horas por dia</p>
+          <p>• Sempre zangada<br>
+            • Dormia abraçada com a roupa da mãe<br>
+            • Mamou até os 5 anos</p>
         </div>
 
         <div class="quote-box">
@@ -613,10 +620,10 @@
         </div>
 
         <div class="conquistas-list">
-          <div class="conquista-item">🍼 Primeira mamadeira</div>
-          <div class="conquista-item">😊 Primeiro sorriso</div>
-          <div class="conquista-item">🚼 Primeiros passos</div>
-          <div class="conquista-item">👶 Primeira palavra</div>
+          <div class="conquista-item">🍼 Comportada</div>
+          <div class="conquista-item">😊 Obediente</div>
+          <div class="conquista-item">🚼 Marrenta</div>
+          <div class="conquista-item">👶 Malvada</div>
         </div>
 
         <p>"E eis que surge a próxima imperatriz dos mares da família!
@@ -941,6 +948,11 @@
               <span class="emoji">🚀</span>
               <span class="nome">Wallace Wilian</span>
               <span class="papel">Cunhado</span>
+            </div>
+            <div class="participante">
+              <span class="emoji">🚀</span>
+              <span class="nome">Rebeca</span>
+              <span class="papel">Sobrinha</span>
             </div>
           </div>
         </div>
